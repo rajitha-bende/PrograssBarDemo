@@ -24,6 +24,12 @@
 			color:black;
 			top: 4px;
 		}
+		.pb-button{
+			margin: 0 2px;
+		}
+		select{
+			padding: 3px;
+		}
     </style>
 </head>
 <body>
@@ -54,7 +60,7 @@
 	<script id="progressBarsButtons" type="text/ractive">
 		<div>
 			{{#buttons}}
-				<button on-click="doChangeBarValue" value="{{value}}">{{value}}</button>
+				<button class="pb-button" on-click="doChangeBarValue" value="{{value}}">{{value}}</button>
 			{{/buttons}}
 		</div>
 	</script>
