@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Progress Bars Demo</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style>
+		.jumbotron {
+		  position: absolute;
+		  top: 50%;
+		  left:50%;
+		  transform: translate(-50%,-50%);
+		}
+		.progress {
+			position:relative;
+		}
+		.progress span {
+			position:absolute;
+			left:0;
+			width:100%;
+			text-align:center;
+			z-index:2;
+			color:black;
+		}
+    </style>
+</head>
+<body>
+	<div class="jumbotron col-xs-10 col-sm-7 col-md-5 col-lg-4">
+	  <h2 style="text-align: center;">Progress Bars Demo</h2>
+	  <div class="container"></div>
+	</div>
+	<script id="progressBarsSelector" type="text/ractive">
+		<select  on-change="doSelectBar">
+			{{#bars}}
+				<option selected="{{selected}}" value="{{uid}}">{{uid}}</option>
+			{{/bars}}
+		</select>
+	</script>
+
+	<script id="progressBars" type="text/ractive">
+		<div class="row">
+			{{#bars}}
+			<div class="progress">
+				<div class="progress-bar {{cssClass}}" role="progressbar" aria-valuenow="width: {{value}}" aria-valuemin="0"  style="width: {{value}}%">
+				</div>
+				<span>{{value}}%</span>
+			</div>
+			{{/bars}}
+		</div>
+	</script>
+
+	<script id="progressBarsButtons" type="text/ractive">
+		<div>
+			{{#buttons}}
+				<button on-click="doChangeBarValue" value="{{value}}">{{value}}</button>
+			{{/buttons}}
+		</div>
+	</script>
+
+	<script id="progressBarsWidget" type="text/ractive">
+			{{>progressBars}}
+			<div class="row">
+				<div class="pull-left" style="padding-right:10px">
+					{{>progressBarsSelector}}
+				</div>
+				<div class="pull-left">
+					{{>progressBarsButtons}}
+				</div>
+			</div>  
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src='http://cdn.ractivejs.org/latest/ractive.js'></script>
+	<script src="app.js"></script>
+</body>
+</html>
